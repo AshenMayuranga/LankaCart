@@ -10,10 +10,10 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/users': { target: 'http://localhost:8085', changeOrigin: true },
-      '/products': { target: 'http://localhost:8085', changeOrigin: true },
-      '/orders': { target: 'http://localhost:8085', changeOrigin: true },
-      '/inventory': { target: 'http://localhost:8085', changeOrigin: true },
+      '/users': { target: 'http://localhost:8086', changeOrigin: true },
+      '/products': { target: 'http://localhost:8086', changeOrigin: true },
+      '/orders': { target: 'http://localhost:8086', changeOrigin: true },
+      '/inventory': { target: 'http://localhost:8086', changeOrigin: true },
     },
   },
 })
