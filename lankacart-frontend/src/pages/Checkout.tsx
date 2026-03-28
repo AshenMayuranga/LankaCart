@@ -62,7 +62,7 @@ export default function Checkout() {
           userId: user?.id ?? 1,
           productId: item.product.id,
           quantity: item.quantity,
-          totalPrice: item.product.price * item.quantity,
+          totalPrice: parseFloat((item.product.price * item.quantity).toFixed(2)),
           status: 'PENDING',
           shippingAddress,
         })

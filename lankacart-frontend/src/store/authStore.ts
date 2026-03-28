@@ -29,13 +29,29 @@ export const useAuthStore = create<AuthState>((set) => ({
     if (!username.trim() || !password.trim()) {
       throw new Error('Username and password are required')
     }
-    await new Promise((r) => setTimeout(r, 400)) // simulate network
+    // Try to find real user in the backend database
+    let realId = Date.now()
+    let email = `${username}@lankacart.lk`
+    let firstName = username.charAt(0).toUpperCase() + username.slice(1)
+    let lastName = 'User'
+    try {
+      const users = await usersApi.getAll()
+      const found = users.find((u) => u.username.toLowerCase() === username.toLowerCase())
+      if (found) {
+        realId    = found.id
+        email     = found.email
+        firstName = found.firstName
+        lastName  = found.lastName
+      }
+    } catch {
+      // backend not available — fall back to mock values
+    }
     const user: AuthUser = {
-      id: 1,
+      id: realId,
       username,
-      email: `${username}@lankacart.lk`,
-      firstName: username.charAt(0).toUpperCase() + username.slice(1),
-      lastName: 'User',
+      email,
+      firstName,
+      lastName,
       role: username.toLowerCase() === 'admin' ? 'admin' : 'customer',
     }
     localStorage.setItem(USER_KEY, JSON.stringify(user))
