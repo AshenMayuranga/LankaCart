@@ -17,19 +17,19 @@ start "Inventory Service" cmd /k "cd /d %~dp0 && ./gradlew :inventory-service:bo
 echo Waiting 10 seconds for services to start...
 timeout /t 10 /nobreak
 
-echo Starting API Gateway (Port 8085)...
+echo Starting API Gateway (Port 8086)...
 start "API Gateway" cmd /k "cd /d %~dp0 && ./gradlew :api-gateway:bootRun"
 
 echo.
 echo All services are starting up...
 echo.
 echo Access URLs:
-echo - API Gateway: http://localhost:8085
+echo - API Gateway: http://localhost:8086
 echo - User Service: http://localhost:8081
 echo - Product Service: http://localhost:8082
 echo - Order Service: http://localhost:8083
 echo - Inventory Service: http://localhost:8084
 echo.
-echo Gateway Swagger UI: http://localhost:8085/swagger-ui.html
+echo Gateway Swagger UI: http://localhost:8086/swagger-ui.html
 echo.
 pause
