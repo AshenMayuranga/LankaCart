@@ -8,6 +8,7 @@ export interface User {
   lastName: string
   password?: string
   phoneNumber?: string
+  role?: 'ADMIN' | 'CUSTOMER'
 }
 
 export type UserCreate = Omit<User, 'id'>
@@ -68,7 +69,7 @@ export interface CartItem {
   quantity: number
 }
 
-// ─── Auth (mock / client-side) ────────────────────────────────────────────
+// ─── Auth ─────────────────────────────────────────────────────────────────
 
 export interface AuthUser {
   id: number
@@ -76,5 +77,15 @@ export interface AuthUser {
   email: string
   firstName: string
   lastName: string
-  role: 'admin' | 'customer'
+  role: 'ADMIN' | 'CUSTOMER'
+}
+
+export interface AuthResponse {
+  token: string
+  id: number
+  username: string
+  email: string
+  firstName: string
+  lastName: string
+  role: 'ADMIN' | 'CUSTOMER'
 }

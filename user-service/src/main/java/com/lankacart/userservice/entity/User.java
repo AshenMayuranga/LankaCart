@@ -32,4 +32,7 @@ public class User {
     private String password;
     
     private String phoneNumber;
+
+    @Column(nullable = false)
+    private String role = "CUSTOMER";
 }

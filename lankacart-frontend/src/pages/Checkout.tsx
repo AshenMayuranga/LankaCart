@@ -59,7 +59,7 @@ export default function Checkout() {
     try {
       const promises = items.map((item) =>
         createOrder({
-          userId: user?.id ?? 1,
+          userId: user!.id,
           productId: item.product.id,
           quantity: item.quantity,
           totalPrice: parseFloat((item.product.price * item.quantity).toFixed(2)),

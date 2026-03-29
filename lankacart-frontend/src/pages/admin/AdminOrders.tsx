@@ -22,7 +22,8 @@ export default function AdminOrders() {
   }, [orders, filterStatus])
 
   const handleStatusChange = (order: Order, status: OrderStatus) => {
-    updateOrder({ id: order.id, body: { ...order, status } })
+    const { id: _id, orderDate: _date, ...rest } = order
+    updateOrder({ id: order.id, body: { ...rest, status } })
   }
 
   const handleDelete = (id: number) => {

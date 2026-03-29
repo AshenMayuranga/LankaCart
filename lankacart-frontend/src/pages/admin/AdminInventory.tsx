@@ -58,7 +58,7 @@ export default function AdminInventory() {
   })
 
   const openCreate = () => {
-    reset({ productId: 0, quantity: 0, location: '', status: 'IN_STOCK', supplier: '', warehouseCode: '' })
+    reset({ productId: undefined, quantity: 0, location: '', status: 'IN_STOCK', supplier: '', warehouseCode: '' })
     setModalMode('create')
   }
 
