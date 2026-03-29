@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Package, Info } from 'lucide-react'
+import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom'
+import { Package } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
@@ -28,8 +28,7 @@ export default function Login() {
   } = useForm<FormData>({ resolver: zodResolver(schema) })
 
   if (isAuthenticated) {
-    navigate(from, { replace: true })
-    return null
+    return <Navigate to={from} replace />
   }
 
   const onSubmit = async (data: FormData) => {
@@ -52,16 +51,6 @@ export default function Login() {
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
           <p className="text-sm text-gray-500 mt-1">Sign in to your LankaCart account</p>
-        </div>
-
-        {/* Demo hint */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 flex gap-3">
-          <Info className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-          <div className="text-xs text-amber-700 space-y-1">
-            <p className="font-semibold">Demo credentials:</p>
-            <p>Admin: <code className="bg-amber-100 px-1 py-0.5 rounded">admin</code> / any password</p>
-            <p>Customer: any other username / any password</p>
-          </div>
         </div>
 
         {/* Form */}

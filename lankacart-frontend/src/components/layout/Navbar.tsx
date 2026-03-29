@@ -110,7 +110,7 @@ export default function Navbar() {
                         <p className="text-sm font-semibold text-gray-900">{user?.firstName} {user?.lastName}</p>
                         <p className="text-xs text-gray-400">{user?.email}</p>
                       </div>
-                      {user?.role === 'admin' && (
+                      {user?.role === 'ADMIN' && (
                         <Link
                           to="/admin"
                           onClick={() => setUserMenuOpen(false)}
@@ -167,7 +167,7 @@ export default function Navbar() {
               <NavLink to="/orders" onClick={() => setMobileOpen(false)}
                 className="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">My Orders</NavLink>
             )}
-            {user?.role === 'admin' && (
+            {user?.role === 'ADMIN' && (
               <NavLink to="/admin" onClick={() => setMobileOpen(false)}
                 className="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Admin</NavLink>
             )}

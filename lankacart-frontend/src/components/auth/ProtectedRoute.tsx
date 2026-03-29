@@ -10,7 +10,7 @@ export default function ProtectedRoute({ requireAdmin = false }: Props) {
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />
   }
-  if (requireAdmin && user?.role !== 'admin') {
+  if (requireAdmin && user?.role !== 'ADMIN') {
     return <Navigate to="/" replace />
   }
   return <Outlet />

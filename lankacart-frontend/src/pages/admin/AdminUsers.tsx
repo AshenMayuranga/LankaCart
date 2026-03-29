@@ -7,7 +7,9 @@ import { useUsers, useCreateUser, useUpdateUser, useDeleteUser } from '@/hooks/u
 import type { User } from '@/types'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
+import Select from '@/components/ui/Select'
 import Modal from '@/components/ui/Modal'
+import Badge from '@/components/ui/Badge'
 import Table, { type Column } from '@/components/ui/Table'
 
 const createSchema = z.object({
@@ -17,6 +19,7 @@ const createSchema = z.object({
   lastName: z.string().min(1, 'Required'),
   password: z.string().min(6, 'At least 6 characters'),
   phoneNumber: z.string().optional(),
+  role: z.enum(['CUSTOMER', 'ADMIN']),
 })
 
 const editSchema = createSchema.extend({
@@ -53,13 +56,13 @@ export default function AdminUsers() {
   })
 
   const openCreate = () => {
-    reset({ username: '', email: '', firstName: '', lastName: '', password: '', phoneNumber: '' })
+    reset({ username: '', email: '', firstName: '', lastName: '', password: '', phoneNumber: '', role: 'CUSTOMER' })
     setModalMode('create')
   }
 
   const openEdit = (u: User) => {
     setSelected(u)
-    reset({ username: u.username, email: u.email, firstName: u.firstName, lastName: u.lastName, password: '', phoneNumber: u.phoneNumber ?? '' })
+    reset({ username: u.username, email: u.email, firstName: u.firstName, lastName: u.lastName, password: '', phoneNumber: u.phoneNumber ?? '', role: u.role ?? 'CUSTOMER' })
     setModalMode('edit')
   }
 
@@ -102,9 +105,13 @@ export default function AdminUsers() {
       render: (u) => <span className="text-sm text-gray-600">{u.email}</span>,
     },
     {
-      key: 'password', header: 'Password',
-      render: () => <span className="text-sm text-gray-300 font-mono tracking-widest">••••••</span>,
-      className: 'w-32',
+      key: 'role', header: 'Role',
+      render: (u) => (
+        <Badge className={u.role === 'ADMIN' ? 'bg-purple-100 text-purple-700' : 'bg-brand-100 text-brand-700'}>
+          {u.role ?? 'CUSTOMER'}
+        </Badge>
+      ),
+      className: 'w-28',
     },
     {
       key: 'phoneNumber', header: 'Phone',
@@ -205,6 +212,16 @@ export default function AdminUsers() {
           <Input
             label="Phone Number" placeholder="+94 71 234 5678"
             {...register('phoneNumber')}
+          />
+          <Select
+            label="Role"
+            required
+            options={[
+              { value: 'CUSTOMER', label: 'Customer' },
+              { value: 'ADMIN', label: 'Admin' },
+            ]}
+            error={errors.role?.message}
+            {...register('role')}
           />
         </form>
       </Modal>

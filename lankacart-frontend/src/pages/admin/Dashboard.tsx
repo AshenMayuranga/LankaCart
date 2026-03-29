@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Package, ShoppingBag, Users, Warehouse, TrendingUp, AlertTriangle } from 'lucide-react'
 import { useProducts } from '@/hooks/useProducts'
 import { useOrders } from '@/hooks/useOrders'
@@ -94,9 +95,9 @@ export default function Dashboard() {
         <div className="xl:col-span-2 card p-0 overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-50 flex items-center justify-between">
             <h3 className="font-semibold text-gray-900">Recent Orders</h3>
-            <a href="/admin/orders" className="text-xs text-brand-600 hover:text-brand-700 font-medium">
+            <Link to="/admin/orders" className="text-xs text-brand-600 hover:text-brand-700 font-medium">
               View all
-            </a>
+            </Link>
           </div>
           {recentOrders.length === 0 ? (
             <div className="py-12 text-center text-sm text-gray-400">No orders yet</div>

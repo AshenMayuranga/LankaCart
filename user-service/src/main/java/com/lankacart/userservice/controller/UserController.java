@@ -4,6 +4,7 @@ import com.lankacart.userservice.entity.User;
 import com.lankacart.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public List<User> getAllUsers() {
@@ -29,6 +33,7 @@ public class UserController {
 
     @PostMapping
     public User createUser(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -40,7 +45,7 @@ public class UserController {
                     user.setEmail(userDetails.getEmail());
                     user.setFirstName(userDetails.getFirstName());
                     user.setLastName(userDetails.getLastName());
-                    user.setPassword(userDetails.getPassword());
+                    user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
                     user.setPhoneNumber(userDetails.getPhoneNumber());
                     User updatedUser = userRepository.save(user);
                     return ResponseEntity.ok().body(updatedUser);
