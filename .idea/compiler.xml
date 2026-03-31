@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="LankaCart.product-service.main" />
+        <module name="LankaCart.order-service.main" />
+        <module name="LankaCart.inventory-service.main" />
+        <module name="LankaCart.api-gateway.main" />
+        <module name="LankaCart.user-service.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="17" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="LankaCart.api-gateway" options="-parameters" />
+      <module name="LankaCart.api-gateway.main" options="-parameters" />
+      <module name="LankaCart.api-gateway.test" options="-parameters" />
+      <module name="LankaCart.inventory-service" options="-parameters" />
+      <module name="LankaCart.inventory-service.main" options="-parameters" />
+      <module name="LankaCart.inventory-service.test" options="-parameters" />
+      <module name="LankaCart.order-service" options="-parameters" />
+      <module name="LankaCart.order-service.main" options="-parameters" />
+      <module name="LankaCart.order-service.test" options="-parameters" />
+      <module name="LankaCart.product-service" options="-parameters" />
+      <module name="LankaCart.product-service.main" options="-parameters" />
+      <module name="LankaCart.product-service.test" options="-parameters" />
+      <module name="LankaCart.user-service" options="-parameters" />
+      <module name="LankaCart.user-service.main" options="-parameters" />
+      <module name="LankaCart.user-service.test" options="-parameters" />
+    </option>
+  </component>
+</project>
