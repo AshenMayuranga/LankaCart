@@ -67,9 +67,12 @@ public class AggregatedOpenApiController {
                     Map<String, Object> combined = new LinkedHashMap<>();
                     combined.put("openapi", "3.0.1");
                     combined.put("info", Map.of(
-                            "title", "LankaCart API Gateway",
-                            "description", "API Gateway - Aggregated documentation for all LankaCart microservices",
+                            "title", "LankaCart API Gateway — All Services",
+                            "description", "Aggregated API documentation for all LankaCart microservices routed through the gateway",
                             "version", "1.0.0"
+                    ));
+                    combined.put("servers", List.of(
+                            Map.of("url", gatewayBaseUrl, "description", "LankaCart API Gateway (localhost:8086)")
                     ));
                     combined.put("paths", paths);
                     if (!schemas.isEmpty()) {
@@ -86,7 +89,6 @@ public class AggregatedOpenApiController {
         urls.add(productServiceBaseUrl + "/api-docs");
         urls.add(orderServiceBaseUrl + "/api-docs");
         urls.add(inventoryServiceBaseUrl + "/api-docs");
-        urls.add(gatewayBaseUrl + "/api-docs");
         return urls;
     }
 }
